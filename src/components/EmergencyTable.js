@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
+import { useSnackbar } from "notistack";
 
 import Paper from "@material-ui/core/Paper";
 import { Container } from "@material-ui/core";
@@ -22,6 +23,12 @@ function EmergencyTable(props) {
   const headers = props.headers;
   console.log("Rows..", rows);
   const classes = useStyles();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const handleClick = () => {
+    setTimeout(() => {
+      enqueueSnackbar(`Booking success. Ambulance will arrive soon`);
+    }, 2000);
+  };
 
   return (
     <div>
@@ -51,11 +58,14 @@ function EmergencyTable(props) {
                   <TableCell align="center">{row.icuAvailability}</TableCell>
 
                   <TableCell align="center">
-                    {props.buttonFlag ? (
-                      <Button variant="outlined" color="primary" size="small">
-                        Call Now
-                      </Button>
-                    ) : null}
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      size="small"
+                      onClick={handleClick}
+                    >
+                      Call Now
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

@@ -66,7 +66,8 @@ function SignUp(props) {
     );
     console.log("Response from register", response.data);
     if (response.data.flag) {
-      localStorage.setItem("user", userData.email);
+      localStorage.setItem("firstname", response.data.user.firstName);
+      localStorage.setItem("lastname", response.data.user.lastName);
       alert("Successfully registered!");
       props.history.push("/home");
     } else {

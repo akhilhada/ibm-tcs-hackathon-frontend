@@ -18,10 +18,14 @@ import { withRouter } from "react-router-dom";
 import HeaderLoggedIn from "./HeaderLoggedIn";
 import HeaderLoggedOut from "./HeaderLoggedOut";
 import { SnackbarProvider } from "notistack";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  // a: {
+  //   textDecoration: "none ! important",
+  // },
   root: {
     display: "flex",
   },
@@ -58,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    textDecoration: "none ! important",
   },
   drawerPaper: {
     position: "relative",
@@ -110,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Layout({ children }) {
   const [loggedIn, setLoggedIn] = useState(
-    Boolean(localStorage.getItem("user"))
+    Boolean(localStorage.getItem("firstname"))
   );
 
   const classes = useStyles();
@@ -145,11 +150,13 @@ function Layout({ children }) {
             </IconButton>
 
             <Typography
-              component="h1"
+              button
               variant="h6"
               color="inherit"
               noWrap
               className={classes.title}
+              component={Link}
+              to="/home"
             >
               Covid Help Portal
             </Typography>

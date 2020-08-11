@@ -7,7 +7,14 @@ import AirportShuttleIcon from "@material-ui/icons/AirportShuttle";
 import FeedbackIcon from "@material-ui/icons/Feedback";
 import AppsIcon from "@material-ui/icons/Apps";
 import LayersIcon from "@material-ui/icons/Layers";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
+
+const handleLogout = () => {
+  localStorage.removeItem("firstname");
+  localStorage.removeItem("lastname");
+  console.log("User logged out");
+};
 
 const mainListItems = (
   <div>
@@ -41,6 +48,12 @@ const mainListItems = (
         <FeedbackIcon />
       </ListItemIcon>
       <ListItemText primary="Feedback" />
+    </ListItem>
+    <ListItem button component={Link} to="/" onClick={handleLogout}>
+      <ListItemIcon>
+        <ExitToAppIcon />
+      </ListItemIcon>
+      <ListItemText primary="Logout" />
     </ListItem>
   </div>
 );

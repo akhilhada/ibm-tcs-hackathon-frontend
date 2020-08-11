@@ -41,10 +41,11 @@ function Login(props) {
     e.preventDefault();
     console.log("Form submit", user);
     const response = await Axios.post(`${user_backend_url}/authenticate`, user);
-    console.log("Response..", response);
+    console.log("Response..", response.data);
     if (response.data.flag) {
       console.log("Correct cred");
-      localStorage.setItem("user", user.email);
+      localStorage.setItem("firstname", response.data.result.user.firstName);
+      localStorage.setItem("lastname", response.data.result.user.lastName);
       props.history.push("/home");
     } else if (!response.data.flag) {
       alert("Wrong email/password!");
