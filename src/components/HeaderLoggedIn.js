@@ -8,23 +8,19 @@ import { withRouter } from "react-router-dom";
 const HeaderLoggedIn = (props) => {
   const handleLogout = () => {
     props.setLoggedIn(false);
-    localStorage.removeItem("user");
+    localStorage.removeItem("firstname");
+    localStorage.removeItem("lastname");
   };
+
+  const user = `${localStorage.getItem("firstname")} ${localStorage.getItem(
+    "lastname"
+  )}`;
+  console.log(user);
   return (
     <div>
       <Typography variant="caption">
-        {localStorage.getItem("user")}&nbsp;
+        <strong>Welcome</strong>&nbsp;{user}&nbsp;
       </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleLogout}
-        component={Link}
-        to="/"
-        style={{ margin: "1px" }}
-      >
-        Logout
-      </Button>
     </div>
   );
 };
