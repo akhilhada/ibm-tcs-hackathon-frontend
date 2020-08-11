@@ -40,8 +40,8 @@ vcsInfo:
   repoUrl: ""
   branch: ""
 
-partOf: hackathonfrontend
+partOf: covidmanagement
 
-connectsTo: 
+connectsTo: hackathon-middleware
 
 runtime: js
