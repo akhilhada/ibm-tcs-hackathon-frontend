@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import Container from "@material-ui/core/Container";
+import { useSnackbar } from "notistack";
 
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -77,6 +78,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HospitalHome(props) {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   const [rows, setRows] = useState([]);
   const [pincode, setPincode] = useState(null);
   const classes = useStyles();
@@ -104,6 +107,11 @@ export default function HospitalHome(props) {
         setRows([...rows, result.data]);
       } else {
         setRows([]);
+        if (pincode >= 400600 && pincode <= 400700)
+          enqueueSnackbar(
+            `No facilities found with given pincode. Try searching 400601,400607,400615...`
+          );
+        else enqueueSnackbar(`Service unavailable in your location`);
       }
     }
   };
