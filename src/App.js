@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   fixedHeight: {
-    height: 240,
+    height: 245,
   },
   footer: {
     padding: theme.spacing(3, 2),
@@ -106,7 +106,7 @@ function App() {
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
             <Typography variant="h4">
-              Find your nearest medical facilities{" "}
+              <em> Find your nearest medical facilities</em>
             </Typography>
             <br />
             <Typography>
@@ -134,8 +134,22 @@ function App() {
           <Paper className={fixedHeightPaper}>
             <br />
             <Typography>
-              View hospitals along with their facilities and ratings by previous
-              users.
+              We have collected a list of nearest hospitals and the facilities
+              they offer including the emergency facilities such as ambulances
+              and critical care units.
+              <br />
+              Navigate to the Hospitals tab to find out the list of your nearest
+              hospitals and to check for their availability of beds.
+              <br />
+              Navigate to the Emergency Services to check for ambulance
+              facilities based on your location. You can also call an ambulance
+              based on the availability.
+              <br />
+              Navigate to the Testing results tab to know more about the cases
+              in your nearby locations.
+              <br />
+              Navigate to feedback to provide your valuable comments,suggestions
+              and grievances.
             </Typography>
           </Paper>
         </Grid>
