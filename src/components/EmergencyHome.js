@@ -9,6 +9,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Axios from "axios";
 import env from "../environment";
 import EmergencyTable from "./EmergencyTable";
+import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -75,6 +76,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EmergencyHome(props) {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   const [rows, setRows] = useState([]);
   const [pincode, setPincode] = useState(null);
   const classes = useStyles();
@@ -100,6 +103,11 @@ export default function EmergencyHome(props) {
         setRows([...rows, result.data]);
       } else {
         setRows([]);
+        if (pincode >= 400600 && pincode <= 400700)
+          enqueueSnackbar(
+            `No facilities found with given pincode. Try searching 400601,400607,400615...`
+          );
+        else enqueueSnackbar(`Service unavailable in your location`);
       }
     }
   };
