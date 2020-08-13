@@ -7,6 +7,10 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY package.json /app
+
+# Git needed by material-table
+RUN apk add git
+
 RUN npm install --only=prod
 #COPY server /app/server
 #COPY public /app/public
