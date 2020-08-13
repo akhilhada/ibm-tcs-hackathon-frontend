@@ -46,6 +46,7 @@ function Login(props) {
       console.log("Correct cred");
       localStorage.setItem("firstname", response.data.result.user.firstName);
       localStorage.setItem("lastname", response.data.result.user.lastName);
+      localStorage.setItem("user", user.email);
       props.history.push("/home");
     } else if (!response.data.flag) {
       alert("Wrong email/password!");

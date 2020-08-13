@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 
 import { withRouter } from "react-router-dom";
+import Spacing from "material-ui/styles/spacing";
 
 const HeaderLoggedIn = (props) => {
   const handleLogout = () => {
@@ -18,8 +19,11 @@ const HeaderLoggedIn = (props) => {
   console.log(user);
   return (
     <div>
-      <Typography variant="caption">
-        <strong>Welcome</strong>&nbsp;{user}&nbsp;
+      <Typography
+        variant="caption"
+        style={{ fontSize: "14px", color: "#0d47a1" }}
+      >
+        <strong style={{ fontSize: "16px" }}>WELCOME</strong>&nbsp;{user}&nbsp;
       </Typography>
     </div>
   );

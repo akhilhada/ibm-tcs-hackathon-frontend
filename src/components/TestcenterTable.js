@@ -10,9 +10,19 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Container } from "@material-ui/core";
 
+import moment from "moment";
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
+  },
+
+  cell: {
+    color: "#0d47a1",
+  },
+  cell2: {
+    color: "#1976d2",
+    background: "#fff9c4",
   },
 });
 
@@ -26,11 +36,19 @@ function TestcenterTable(props) {
     <div>
       {rows.length ? (
         <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
+          <Table
+            className={classes.table}
+            aria-label="simple table"
+            style={{ border: "0.5px solid" }}
+          >
+            <TableHead style={{ background: "#ffff8d" }}>
               <TableRow>
                 {headers.map((header) => (
-                  <TableCell key={headers.indexOf(header)} align="left">
+                  <TableCell
+                    key={headers.indexOf(header)}
+                    align="left"
+                    style={{ border: "0.5px solid" }}
+                  >
                     {header}
                   </TableCell>
                 ))}
@@ -38,14 +56,26 @@ function TestcenterTable(props) {
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row._id}>
-                  <TableCell>{row.hospitalName}</TableCell>
-                  <TableCell component="th" scope="row">
+                <TableRow key={row._id} className={classes.cell2}>
+                  <TableCell style={{ border: "0.5px solid" }}>
+                    {row.hospitalName}
+                  </TableCell>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    style={{ border: "0.5px solid" }}
+                  >
                     {row.no_of_testings}
                   </TableCell>
-                  <TableCell align="center">{row.no_of_positive}</TableCell>
-                  <TableCell align="center">{row.wardNo}</TableCell>
-                  <TableCell align="left">{row.updateDate}</TableCell>
+                  <TableCell align="center" style={{ border: "0.5px solid" }}>
+                    {row.no_of_positive}
+                  </TableCell>
+                  <TableCell align="center" style={{ border: "0.5px solid" }}>
+                    {row.wardNo}
+                  </TableCell>
+                  <TableCell align="left" style={{ border: "0.5px solid" }}>
+                    {moment.utc(row.updateDate).format("MM/DD/YYYY")}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

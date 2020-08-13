@@ -76,6 +76,10 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  tableHead: {
+    background: "#303f9f",
+    color: "white",
+  },
 }));
 
 export default function TestcenterHome(props) {
@@ -115,9 +119,13 @@ export default function TestcenterHome(props) {
   };
   return (
     <div className={classes.grow}>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
+      <AppBar position="static">
+        <Toolbar className={classes.tableHead}>
+          <Typography
+            className={classes.title}
+            style={{ fontSize: "14px", fontWeight: "bold" }}
+            noWrap
+          >
             Results from testcentres
           </Typography>
           <div className={classes.search}>

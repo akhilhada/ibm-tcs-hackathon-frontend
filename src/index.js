@@ -6,7 +6,7 @@ import App from "./App";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
-import Login from "./components/Login";
+import Login2 from "./components/Login2";
 import SignUp from "./components/Signup";
 import HospitalHome from "./components/HospitalHome";
 import EmergencyHome from "./components/EmergencyHome";
@@ -18,7 +18,7 @@ const createBrowserHistory = require("history").createBrowserHistory;
 ReactDOM.render(
   <Router history={createBrowserHistory()}>
     <Switch>
-      <Route exact path="/" render={() => <Login />}></Route>
+      <Route exact path="/" render={() => <Login2 />}></Route>
       <Route exact path="/signup" component={SignUp}></Route>
       <Route
         path="/home"

@@ -1,63 +1,140 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
+
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Rating from "@material-ui/lab/Rating";
+import Box from "@material-ui/core/Box";
+
 import { useSnackbar } from "notistack";
 
-import Button from "@material-ui/core/Button";
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-export default function Feedback() {
+function Feedback(props) {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(2);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  const handleClick = () => {
-    enqueueSnackbar("Your feedback has been submitted successfully!");
+  const [feedback, setFeedback] = useState({
+    comments: "",
+    suggestions: "",
+    grievances: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Form submit", feedback);
+    setTimeout(() => {
+      enqueueSnackbar(
+        `Your feedback has been submitted successfully. Thank you!`
+      );
+    }, 2000);
   };
 
   return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Share your experience...
-      </Typography>
-      <br />
-      <br />
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <TextField
-            id="address1"
-            name="address1"
-            label="Comments"
-            fullWidth
-            autoComplete="shipping address-line1"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address3"
-            name="address3"
-            label="Suggestions"
-            fullWidth
-            autoComplete="shipping address-line1"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Grievances"
-            fullWidth
-            autoComplete="shipping address-line2"
-          />
-        </Grid>
-
-        <Button
-          variant="outlined"
-          color="primary"
-          type="submit"
-          onClick={handleClick}
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5" style={{ color: "#0288d1" }}>
+          Please share your experience
+        </Typography>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={(e) => handleSubmit(e)}
         >
-          Submit
-        </Button>
-      </Grid>
-    </React.Fragment>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="comments"
+            label="Comments"
+            name="email"
+            autoComplete="comments"
+            autoFocus
+            onChange={(event) =>
+              setFeedback({ ...feedback, comments: event.target.value })
+            }
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="password"
+            label="Suggestions"
+            type="text"
+            id="password"
+            autoComplete="current-password"
+            onChange={(event) =>
+              setFeedback({ ...feedback, suggestions: event.target.value })
+            }
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="password"
+            label="Grievances"
+            type="text"
+            id="password"
+            autoComplete="current-password"
+            onChange={(event) =>
+              setFeedback({ ...feedback, grievances: event.target.value })
+            }
+          />
+          <Box
+            component="fieldset"
+            mb={3}
+            borderColor="transparent"
+            style={{ display: "inline-block" }}
+          >
+            <Typography component="legend" style={{ color: "grey" }}>
+              Rating&nbsp;{" "}
+              <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+              />
+            </Typography>
+          </Box>
+
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Submit
+          </Button>
+        </form>
+      </div>
+    </Container>
   );
 }
+
+export default Feedback;

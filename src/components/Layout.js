@@ -19,6 +19,9 @@ import HeaderLoggedIn from "./HeaderLoggedIn";
 import HeaderLoggedOut from "./HeaderLoggedOut";
 import { SnackbarProvider } from "notistack";
 import { Link } from "react-router-dom";
+import { ContentBlock } from "material-ui/svg-icons";
+
+import logotcs from "../assets/logo_tcs.png";
 
 const drawerWidth = 240;
 
@@ -63,6 +66,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     textDecoration: "none ! important",
+    // width: "100%",
+    // textAlign: "center",
   },
   drawerPaper: {
     position: "relative",
@@ -111,6 +116,14 @@ const useStyles = makeStyles((theme) => ({
         ? theme.palette.grey[200]
         : theme.palette.grey[800],
   },
+
+  logoimg: {
+    // position: "fixed",
+    margin: "9px 200px 0px 0px",
+    right: 0,
+    height: "48px",
+    display: "inline",
+  },
 }));
 
 function Layout({ children }) {
@@ -118,7 +131,7 @@ function Layout({ children }) {
     Boolean(localStorage.getItem("firstname"))
   );
 
-  const classes = useStyles();
+  const classes = useStyles("#FFFFFF");
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -134,6 +147,7 @@ function Layout({ children }) {
         <AppBar
           position="absolute"
           className={clsx(classes.appBar, open && classes.appBarShift)}
+          color="transparent"
         >
           <Toolbar className={classes.toolbar}>
             <IconButton
@@ -153,18 +167,47 @@ function Layout({ children }) {
               button
               variant="h6"
               color="inherit"
-              noWrap
               className={classes.title}
               component={Link}
               to="/home"
+              style={{ color: "#0d47a1" }}
             >
-              Covid Help Portal
+              TCS&nbsp;
+              <span style={{ color: "#00BFFF", fontSize: "24px" }}>
+                HealthOne
+              </span>
+              <br />
+              <Typography
+                button
+                variant="overline"
+                color="inherit"
+                // className={classes.title}
+                style={{
+                  fontStyle: "italic",
+                  color: "#03a9f4",
+                  fontWeight: "bold",
+                }}
+              >
+                One place for patients and frontend warriors...
+              </Typography>
             </Typography>
-            {loggedIn ? (
-              <HeaderLoggedIn setLoggedIn={setLoggedIn} />
-            ) : (
-              <HeaderLoggedOut setLoggedIn={setLoggedIn} />
-            )}
+
+            <div style={{ float: "right", display: "inline-block" }}>
+              {loggedIn ? (
+                <HeaderLoggedIn setLoggedIn={setLoggedIn} />
+              ) : (
+                <HeaderLoggedOut setLoggedIn={setLoggedIn} />
+              )}
+            </div>
+            <div>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1280px-Tata_Consultancy_Services_Logo.svg.png"
+                alt="Logo"
+                // className={classes.logoimg}
+                style={{ height: "48px", width: "120px" }}
+              />
+            </div>
+
             {/* <Button variant="contained" color="primary">
             Login/Register
           </Button> */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -75,6 +75,10 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  tableHead: {
+    background: "#303f9f",
+    color: "white",
+  },
 }));
 
 export default function HospitalHome(props) {
@@ -90,12 +94,11 @@ export default function HospitalHome(props) {
     "Rating",
     "Insurance Coverage",
     "Phone",
-    "Bed Availability",
+    "General Bed Availability",
     "ICU Availability",
     "Book Now",
+    "Call Ambulance",
   ];
-
-  const menuId = "primary-search-account-menu";
 
   const handleKeyPress = async (e) => {
     if (e.key === "Enter") {
@@ -118,8 +121,12 @@ export default function HospitalHome(props) {
   return (
     <div className={classes.grow}>
       <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
+        <Toolbar className={classes.tableHead}>
+          <Typography
+            className={classes.title}
+            noWrap
+            style={{ fontSize: "14px", fontWeight: "bold" }}
+          >
             Find your nearest hospitals
           </Typography>
           <div className={classes.search}>
@@ -142,8 +149,10 @@ export default function HospitalHome(props) {
           <div className={classes.grow} />
         </Toolbar>
       </AppBar>
-
-      {rows.length ? (
+      {/* {localStorage.getItem("firstname") === "admin" && rows.length ? (
+        <RenderTable rows={rows} headers={headersHospital} editFlag="true" />
+      ) : null} */}
+      {localStorage.getItem("firstname") !== "admin" && rows.length ? (
         <RenderTable rows={rows} headers={headersHospital} buttonFlag="true" />
       ) : null}
     </div>

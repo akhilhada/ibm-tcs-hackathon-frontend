@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
+    border: "0.5px solid #0d47a1",
   },
   fixedHeight: {
     height: 245,
@@ -106,22 +107,7 @@ function App() {
 
   return (
     <div className="App">
-      <Grid container spacing={3}>
-        {/* <Grid item xs={12} md={8} lg={9}>
-          <Paper className={fixedHeightPaper}>
-            <Typography variant="h4">
-              <em> Find your nearest medical facilities</em>
-            </Typography>
-            <br />
-            <Typography color="textPrimary">
-              Search to locate your nearest hospitals and confirm the
-              availability of services such as general beds, critical care and
-              ambulances. Daily testing results from your nearest test centres
-              are available.{" "}
-            </Typography>
-          </Paper>
-        </Grid> */}
-
+      <Grid container spacing={3} style={{ background: "#00838f" }}>
         <Grid item xs={12} md={4} lg={3}>
           <Paper className={fixedHeightPaper}>
             <img
@@ -163,16 +149,16 @@ function App() {
               m={1}
               p={1}
             >
-              <p>
+              <p style={{ color: "#0d47a1" }}>
                 We have collected a list of nearest hospitals and the facilities
                 they offer including the emergency facilities such as ambulances
                 and critical care units.
               </p>
-              <p>
+              <p style={{ color: "#1565c0" }}>
                 Navigate to the Hospitals tab to find out the list of your
                 nearest hospitals and to check for their availability of beds.
               </p>
-              <p>
+              <p style={{ color: "#1976d2" }}>
                 Navigate to the Emergency Services to check for ambulance
                 facilities based on your location. You can also call an
                 ambulance based on the availability.
@@ -182,7 +168,7 @@ function App() {
                 in your nearby locations.
               </p>
 
-              <p>
+              <p style={{ color: "#2962ff" }}>
                 Navigate to feedback to provide your valuable
                 comments,suggestions and grievances.
               </p>

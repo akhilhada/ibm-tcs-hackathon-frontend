@@ -73,6 +73,10 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  tableHead: {
+    background: "#303f9f",
+    color: "white",
+  },
 }));
 
 export default function EmergencyHome(props) {
@@ -87,11 +91,8 @@ export default function EmergencyHome(props) {
     "Ambulance Availability",
     "Response Time (in min)",
     "Phone",
-    "ICU Availability",
-    "Call Ambulance",
   ];
 
-  const menuId = "primary-search-account-menu";
 
   const handleKeyPress = async (e) => {
     if (e.key === "Enter") {
@@ -113,9 +114,13 @@ export default function EmergencyHome(props) {
   };
   return (
     <div className={classes.grow}>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
+      <AppBar position="static">
+        <Toolbar className={classes.tableHead}>
+          <Typography
+            className={classes.title}
+            style={{ fontSize: "14px", fontWeight: "bold" }}
+            noWrap
+          >
             Check Emergency facilities
           </Typography>
           <div className={classes.search}>
